@@ -1,0 +1,30 @@
+{
+  "name": "striver",
+  "version": "1.0.0",
+  "description": "[HACKATON] Solent showdown",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianoBP/striver.git"
+  },
+  "author": "adrianobp, ezelopes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adrianoBP/striver/issues"
+  },
+  "homepage": "https://github.com/adrianoBP/striver#readme",
+  "devDependencies": {
+    "eslint": "^8.11.0",
+    "eslint-config-portsoc": "^1.0.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
