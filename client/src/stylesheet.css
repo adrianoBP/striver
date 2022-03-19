@@ -1,8 +1,27 @@
 :root {
   --primary: #107CF1; 
   --accent: #BDD3EF;
+  --body-bg: #f2dec6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
-  background-color: var(--accent);
+  height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+}
+
+.appBody {
+  background-color: var(--body-bg) !important;
+  flex: 1 1 auto;
+  padding-top: 2em;
 }
