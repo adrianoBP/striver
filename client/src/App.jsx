@@ -15,8 +15,8 @@ import NotFound from './pages/NotFound';
 const App = () => {
   return (
     <Router>
-      <NavBar />
       <AuthContext.AuthProvider>
+        <NavBar />
         <main className="appBody">
           <Routes>
             <Route

@@ -21,7 +21,7 @@ const HomePage = () => {
   );
 
   if (isError) {
-    return <div className="home-container"> Error </div>;
+    return <div className="home-container"> An Error occurred. </div>;
   }
 
   if (isLoading) {

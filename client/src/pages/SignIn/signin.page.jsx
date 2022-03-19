@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+// This library only imports a button with google styling!
+import GoogleButton from 'react-google-button';
 
 import AuthContext from '../../components/AuthContext';
+
+import './signin.css';
 
 const SignIn = () => {
   const { login, currentUser } = AuthContext.useAuth();
@@ -14,10 +18,8 @@ const SignIn = () => {
   }, [currentUser]);
 
   return (
-    <div>
-      <button type="button" onClick={login}>
-        Sign in with google
-      </button>
+    <div className="google-button-container">
+      <GoogleButton onClick={login} />
     </div>
   );
 };
