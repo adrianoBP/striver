@@ -9,13 +9,11 @@ const test = (req, res) => {
 };
 
 const insertRecord = async (req, res) => {
-  const newId = uuidv4();
-
   const dbClient = dbService.getConnection();
   await dbClient.connect();
-  dbService.insertRecord(dbClient, 'test', { name: 'test', _id: newId });
+  dbService.insertRecord(dbClient, 'test', { name: 'test', _id: uuidv4() });
 
-  res.send(`Inserted record with id ${newId}`);
+  res.send('Inserted record');
 };
 
 const getRecords = async (req, res) => {

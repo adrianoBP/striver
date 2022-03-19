@@ -1,10 +1,7 @@
-import mongoDB from 'mongodb';
+import mongoDB, { ObjectId } from 'mongodb';
 import dotenv from 'dotenv';
 
-
 dotenv.config();
-
-const DB_NAME = process.env.DB_NAME;
 
 const getConnection = () => {
   const USER = process.env.MONGO_DB_USERNAME;
@@ -17,26 +14,26 @@ const getConnection = () => {
   return new mongoDB.MongoClient(uri);
 };
 
-const insertRecord = async (connection, collectionName, record) => {
-  const db = await connection.db(DB_NAME);
+const insertRecord = async (db, collectionName, record) => {
   const collection = db.collection(collectionName);
-
-  return await collection.insertOne(record);
+  const result = await collection.insertOne(record);
+  return result.insertedId;
 };
 
-const getRecord = async (connection, collectionName, recordId) => {
-  const db = await connection.db(DB_NAME);
+const getRecord = async (db, collectionName, recordId) => {
   const collection = db.collection(collectionName);
-
-  return collection.findOne({ _id: recordId });
+  return await collection.findOne({ _id: ObjectId(recordId) });
 };
 
-
-const deleteRecord = async (connection, collectionName, recordId) => {
-  const db = await connection.db(DB_NAME);
+const updateRecord = (db, collectionName, recordId, record) => {
+  record._id = ObjectId(record._id);
   const collection = db.collection(collectionName);
+  return collection.updateOne({ _id: ObjectId(recordId) }, { $set: record });
+};
 
-  return collection.deleteOne({ _id: recordId });
+const deleteRecord = (db, collectionName, recordId) => {
+  const collection = db.collection(collectionName);
+  return collection.deleteOne({ _id: ObjectId(recordId) });
 };
 
 
@@ -44,5 +41,6 @@ export {
   getConnection,
   insertRecord,
   getRecord,
+  updateRecord,
   deleteRecord,
 };
