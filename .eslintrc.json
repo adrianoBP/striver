@@ -8,5 +8,7 @@
     "es6": true,
     "browser": true
   },
-  "rules": {}
+  "rules": {
+    "require-await": "off"
+  }
 }
