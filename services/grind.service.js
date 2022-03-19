@@ -7,6 +7,12 @@ const COLLECTION_NAME = 'grinds';
 
 // GRIND
 
+const getAllGrinds = async (striverId) => {
+  await client.connect();
+  const db = client.db(DB_NAME);
+  return dbService.getRecordsByProperty(db, COLLECTION_NAME, 'striverId', striverId);
+};
+
 const getGrindById = async (grindId) => {
   await client.connect();
   const db = client.db(DB_NAME);
@@ -175,6 +181,7 @@ const deleteActivity = async (grindId, milestoneId, activityId) => {
 
 
 export {
+  getAllGrinds,
   getGrindById,
   addGrind,
   editGrind,

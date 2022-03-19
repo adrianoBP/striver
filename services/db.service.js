@@ -25,6 +25,11 @@ const getRecord = async (db, collectionName, recordId) => {
   return await collection.findOne({ _id: ObjectId(recordId) });
 };
 
+const getRecordsByProperty = async (db, collectionName, property, value) => {
+  const collection = db.collection(collectionName);
+  return await collection.findOne({ [property]: value });
+};
+
 const updateRecord = (db, collectionName, recordId, record) => {
   record._id = ObjectId(record._id);
   const collection = db.collection(collectionName);
@@ -39,8 +44,10 @@ const deleteRecord = (db, collectionName, recordId) => {
 
 export {
   getConnection,
+
   insertRecord,
   getRecord,
+  getRecordsByProperty,
   updateRecord,
   deleteRecord,
 };

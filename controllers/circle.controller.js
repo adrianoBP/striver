@@ -3,32 +3,48 @@ import * as circleService from '../services/circle.service.js';
 
 const router = new Router();
 
-const getCircle = (req, res) => {
+const getCircle = async (req, res) => {
   const { circleId } = req.params;
-  res.json(circleService.getCircleById(circleId)).send();
+  res.json(await circleService.getCircleById(circleId)).send();
 };
 
-const addCircle = (req, res) => {
+const addCircle = async (req, res) => {
   const { name, description } = req.body;
-  circleService.addCircle(name, description);
-  res.status(200).send();
+  const insertedCircleId = await circleService.addCircle(name, description);
+  res.json(insertedCircleId).send();
 };
 
-const editCircle = (req, res) => {
+const editCircle = async (req, res) => {
   const circle = req.body;
-  circleService.editCircle(circle.id, circle);
+  await circleService.editCircle(circle._id, circle);
   res.status(200).send();
 };
 
-const deleteCircle = (req, res) => {
+const deleteCircle = async (req, res) => {
   const { circleId } = req.params;
-  circleService.deleteCircle(circleId);
+  await circleService.deleteCircle(circleId);
+  res.status(200).send();
+};
+
+const addStriversToCircle = async (req, res) => {
+  const { circleId } = req.params;
+  const striversId = req.body;
+  await circleService.addStriversToCircle(circleId, striversId);
+  res.status(200).send();
+};
+
+const setStriversToCircle = async (req, res) => {
+  const { circleId } = req.params;
+  const striversId = req.body;
+  await circleService.setStriversToCircle(circleId, striversId);
   res.status(200).send();
 };
 
 router.get('/:circleId', getCircle);
 router.post('/add', addCircle);
 router.put('/edit', editCircle);
-router.delete('/:circleId/delete', deleteCircle);
+router.delete('/:circleId', deleteCircle);
+router.post('/:circleId/strivers/add-many', addStriversToCircle);
+router.put('/:circleId/strivers/set', setStriversToCircle);
 
 export default router;
