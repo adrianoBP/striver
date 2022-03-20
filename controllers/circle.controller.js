@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as circleService from '../services/circle.service.js';
+import * as striverService from '../services/striver.service.js';
 
 const router = new Router();
 
@@ -9,8 +10,18 @@ const getCircle = async (req, res) => {
 };
 
 const addCircle = async (req, res) => {
+  const striverId = req.headers['striver-id'];
   const { name, description } = req.body;
-  const insertedCircleId = await circleService.addCircle(name, description);
+  const insertedCircleId = await circleService.addCircle(name, description, striverId);
+
+  // Add circle to striver circles
+  await striverService.addCircle(striverId, {
+    _id: insertedCircleId,
+    name,
+    description,
+    isOwner: true,
+  });
+
   res.json(insertedCircleId).send();
 };
 
@@ -26,17 +37,16 @@ const deleteCircle = async (req, res) => {
   res.status(200).send();
 };
 
-const addStriversToCircle = async (req, res) => {
+const addStriverToCircle = async (req, res) => {
+  const striverId = req.headers['striver-id'];
   const { circleId } = req.params;
-  const striversId = req.body;
-  await circleService.addStriversToCircle(circleId, striversId);
+  await circleService.addStriverToCircle(circleId, striverId);
   res.status(200).send();
 };
 
-const setStriversToCircle = async (req, res) => {
-  const { circleId } = req.params;
-  const striversId = req.body;
-  await circleService.setStriversToCircle(circleId, striversId);
+const removeStriver = async (req, res) => {
+  const { circleId, striverId } = req.params;
+  await circleService.removeStriver(circleId, striverId);
   res.status(200).send();
 };
 
@@ -44,7 +54,7 @@ router.get('/:circleId', getCircle);
 router.post('/add', addCircle);
 router.put('/edit', editCircle);
 router.delete('/:circleId', deleteCircle);
-router.post('/:circleId/strivers/add-many', addStriversToCircle);
-router.put('/:circleId/strivers/set', setStriversToCircle);
+router.post('/:circleId/strivers/add', addStriverToCircle);
+router.delete('/:circleId/strivers/:striverId', removeStriver);
 
 export default router;

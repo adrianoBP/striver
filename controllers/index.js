@@ -12,6 +12,6 @@ router.use('/testing', testingController);
 
 router.use('/circles', circleController);
 router.use('/grinds', grindController);
-router.use('/striver', striverController);
+router.use('/strivers', striverController);
 
 export default router;

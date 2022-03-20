@@ -3,12 +3,12 @@ import * as striverService from '../services/striver.service.js';
 
 const router = new Router();
 
-const getUserByGoogleId = (req, res) => {
-  const { googleId } = req.body;
+const getOrCreateStriver = async (req, res) => {
+  const { striverId, striverName } = req.body;
 
-  res.json(striverService.getUserByGoogleId(googleId)).send();
+  res.json(await striverService.getOrCreate(striverId, striverName)).send();
 };
 
-router.get('/get-by-id', getUserByGoogleId);
+router.post('/get-create', getOrCreateStriver);
 
 export default router;

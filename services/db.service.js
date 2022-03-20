@@ -36,6 +36,11 @@ const updateRecord = (db, collectionName, recordId, record) => {
   return collection.updateOne({ _id: ObjectId(recordId) }, { $set: record });
 };
 
+const updateRecordByProperty = (db, collectionName, property, value, record) => {
+  const collection = db.collection(collectionName);
+  return collection.updateOne({ [property]: value }, { $set: record });
+};
+
 const deleteRecord = (db, collectionName, recordId) => {
   const collection = db.collection(collectionName);
   return collection.deleteOne({ _id: ObjectId(recordId) });
@@ -49,5 +54,6 @@ export {
   getRecord,
   getRecordsByProperty,
   updateRecord,
+  updateRecordByProperty,
   deleteRecord,
 };
