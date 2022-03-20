@@ -22,6 +22,7 @@ const addCircle = async (name, description, striverId) => {
     description,
     striversId: [striverId],
     sharingCode: uuidv4(),
+    owner: striverId,
   });
 };
 
@@ -60,7 +61,7 @@ const addStriverToCircle = async (circleId, striverId) => {
     _id: circle._id,
     name: circle.name,
     description: circle.description,
-    isOwner: false,
+    owner: circle.owner,
   });
 
   await dbService.updateRecord(db, COLLECTION_NAME, circleId, circle);

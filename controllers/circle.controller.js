@@ -19,7 +19,8 @@ const addCircle = async (req, res) => {
     _id: insertedCircleId,
     name,
     description,
-    isOwner: true,
+    owner: striverId,
+    imageSrc: 'https://picsum.photos/200',
   });
 
   res.json(insertedCircleId).send();

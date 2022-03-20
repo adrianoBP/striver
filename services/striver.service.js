@@ -36,12 +36,7 @@ const updateStriver = async (striver) => {
 const addCircle = async (striverId, circle) => {
   const striver = await getStriverById(striverId);
   if (!striver.circles.some((c) => c._id.toString() === circle._id)) {
-    striver.circles.push({
-      _id: circle._id,
-      name: circle.name,
-      description: circle.description,
-      owner: circle.isOwner,
-    });
+    striver.circles.push(circle);
     await updateStriver(striver);
   }
 };
