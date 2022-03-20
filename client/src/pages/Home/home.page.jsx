@@ -29,7 +29,9 @@ const HomePage = () => {
       onSuccess: ({ data }) => {
         // Owner field is a string containing the ID of the owner. If it matches
         // current user ID, then that circle was created by current user.
-        const ownerCircles = data.circles.filter(({ owner }) => owner);
+        const ownerCircles = data.circles.filter(
+          ({ owner }) => owner === currentUser.uid
+        );
 
         setMyCircles(ownerCircles);
         setCircles(data.circles);
@@ -66,6 +68,8 @@ const HomePage = () => {
         };
 
         setMyCircles([...myCircles, newCircle]);
+
+        setCircles([...myCircles, newCircle]);
       },
     }
   );

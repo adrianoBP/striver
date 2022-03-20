@@ -39,7 +39,6 @@ const CirclePage = () => {
     }
   );
 
-  // TODO: Retrieve grinds from circle
   const {
     isError: isGrindsError,
     isLoading: isGrindsLoading,
