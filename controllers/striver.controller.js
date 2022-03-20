@@ -5,7 +5,6 @@ const router = new Router();
 
 const getOrCreateStriver = async (req, res) => {
   const { striverId, striverName } = req.body;
-
   res.json(await striverService.getOrCreate(striverId, striverName)).send();
 };
 
