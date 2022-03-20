@@ -14,12 +14,12 @@ const CirclesDisplayer = ({ circles, title, callback }) => {
         </button>
 
         {circles?.map(({ _id, name, imageSrc }) => (
-          <Link to={`circles/${_id}`} key={_id}>
-            <Circle
-              name={name}
-              imageSrc={imageSrc || 'https://picsum.photos/200'}
-            />
-          </Link>
+          <Circle
+            name={name}
+            imageSrc={imageSrc || 'https://picsum.photos/200'}
+            key={_id}
+            _id={_id}
+          />
         ))}
       </div>
     </div>

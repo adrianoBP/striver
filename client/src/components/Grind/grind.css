@@ -3,16 +3,23 @@
   grid-template-columns: 1fr 3fr;
   background-color: #fff;
   width: auto;
-  width: auto;
   max-height: 8rem;
   border-radius: 4rem;
   padding: 1em 1.2em;
   margin: 1em;
+  color: black;
 }
+
+.grind-card:hover {
+  background-color: var(--accent-light);
+}
+
 
 .grind-name {
   padding-right: 2em;
   font-weight: 900;
+  margin: auto;
+
 }
 
 .grind-details {
@@ -21,13 +28,13 @@
   font-weight: 600;
 }
 
-.grind-details > .count-and-owner {
+.grind-details>.count-and-owner {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: 0.8rem;
 }
 
-.grind-details > .progress-bar-container {
+.grind-details>.progress-bar-container {
   padding-top: 1em;
 }

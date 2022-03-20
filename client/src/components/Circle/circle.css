@@ -3,7 +3,8 @@
   flex-direction: row;
   background-color: #fff;
   justify-content: space-between;
-  width: 20rem;
+  min-width: 20rem;
+  max-width: 20rem;
   height: 8rem;
   border-radius: 4rem;
   padding: 1em 1.2em;

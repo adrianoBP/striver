@@ -1,4 +1,5 @@
 import * as dbService from './db.service.js';
+import * as striverService from './striver.service.js';
 import { ObjectId } from 'mongodb';
 
 const client = dbService.getConnection();
@@ -198,6 +199,9 @@ const getGrindsByCircleId = async (circleId) => {
     const completedActivitiesCount = grind.milestones.reduce((acc, milestone) => acc + milestone.activities.filter(activity => activity.completed).length, 0);
 
     const percentage = Math.round((completedActivitiesCount / activitiesCount) * 100);
+
+    const striver = await striverService.getStriverById(grind.striverId);
+    grind.displayName = striver.displayName;
 
     grind.milestonesCount = milestonesCount;
     grind.completion = percentage || 0;

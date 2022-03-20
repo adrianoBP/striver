@@ -2,7 +2,7 @@
   --primary: #107CF1;
   --accent: #DEC9B0;
   --accent-dark: #7c6951;
-  --accent-light: #ebe1d5;
+  --accent-light: #ffefdb;
   --body-bg: #FAF0EB;
   --padding-left-huge: 5vmax;
 }
@@ -22,6 +22,7 @@ body {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 #root {

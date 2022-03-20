@@ -1,12 +1,15 @@
 import React from 'react';
 import { ProgressBar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import './grind.css';
 
-const Grind = ({ grind }) => {
-  console.log(grind);
+const Grind = ({ grind, circleId }) => {
   return (
-    <div className="grind-card shadow-slim">
+    <Link
+      to={`/circles/${circleId}/grinds/${grind._id}`}
+      className="grind-card shadow-slim"
+    >
       <div className="grind-name">{grind.name}</div>
 
       {/* vertical divider */}
@@ -15,13 +18,13 @@ const Grind = ({ grind }) => {
         <div className="count-and-owner">
           <span>{grind.milestonesCount}</span>
           {/* <span>{grind.striverId}</span> */}
-          <span>Frank</span>
+          <span>{grind.displayName}</span>
         </div>
         <div className="progress-bar-container">
           <ProgressBar now={grind.completion} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

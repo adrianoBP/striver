@@ -63,9 +63,6 @@ const removeStriver = async (req, res) => {
 const getGrindsByCircleId = async (req, res) => {
   const { circleId } = req.params;
   const grinds = await grindService.getGrindsByCircleId(circleId);
-
-  // TODO: calculations
-
   res.json(grinds).send();
 };
 
