@@ -1,5 +1,6 @@
 import * as dbService from './db.service.js';
 import * as striverService from './striver.service.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const client = dbService.getConnection();
 const DB_NAME = 'striver';
@@ -9,7 +10,7 @@ const getCircleById = async (circleId) => {
   await client.connect();
   const db = client.db(DB_NAME);
   const circle = await dbService.getRecord(db, COLLECTION_NAME, circleId);
-  return circle;
+  return { ...circle, imageSrc: 'https://picsum.photos/200' };
 };
 
 const addCircle = async (name, description, striverId) => {
@@ -20,6 +21,7 @@ const addCircle = async (name, description, striverId) => {
     name,
     description,
     striversId: [striverId],
+    sharingCode: uuidv4(),
   });
 };
 

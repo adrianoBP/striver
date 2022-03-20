@@ -14,9 +14,16 @@ const getAllUserGrinds = async (req, res) => {
 const getGrind = async (req, res) => {
   const { grindId } = req.params;
   const grind = await grindService.getGrindById(grindId);
+
+  const milestonesCount = grind.milestones.length;
+  const activitiesCount = grind.milestones.reduce((acc, milestone) => acc + milestone.activities.length, 0);
+  const completedActivitiesCount = grind.milestones.reduce((acc, milestone) => acc + milestone.activities.filter(activity => activity.completed).length, 0);
+
+  const percentage = Math.round((completedActivitiesCount / activitiesCount) * 100);
+
   // Remove milestones to keep HTTP requests as light as possible
   grind.milestones = [];
-  res.json(grind).send();
+  res.json({ ...grind, milestonesCount, completion: percentage }).send();
 };
 
 const addGrind = async (req, res) => {
