@@ -1,0 +1,21 @@
+.circle-page-container {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  padding-left: var(--padding-left-huge);
+  height: 100%;
+}
+
+.strivers-list {
+  padding-top: 5vmax;
+}
+
+.strivers-list > h3 {
+  font-weight: 600;
+}
+
+.horizontal-line {
+  width: 90%;
+  color: black;
+  background-color: black;
+  height: 10px;
+}

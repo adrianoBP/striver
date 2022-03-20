@@ -13,9 +13,7 @@ import './home.css';
 const HomePage = () => {
   const { currentUser } = AuthContext.useAuth();
 
-  // Subject to change
   const [circles, setCircles] = useState([]);
-
   const [myCircles, setMyCircles] = useState([]);
 
   // Circles list are retrieved from the Striver endpoint
@@ -36,14 +34,12 @@ const HomePage = () => {
         setMyCircles(ownerCircles);
         setCircles(data.circles);
       },
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
     }
   );
 
-  const {
-    mutate: creationMutate,
-    isError: isCreationError,
-    isLoading: isCreationLoading,
-  } = useMutation(
+  const { mutate: creationMutate } = useMutation(
     ['create-circle'],
     async () => {
       return axios.post(
@@ -60,9 +56,9 @@ const HomePage = () => {
       );
     },
     {
-      onSuccess: ({ data }) => {
+      onSuccess: ({ data: newCircleId }) => {
         const newCircle = {
-          _id: data.insertedCircleId,
+          _id: newCircleId,
           name: 'New Circle',
           description: '13 Strivers',
           owner: true,
@@ -90,8 +86,6 @@ const HomePage = () => {
 
   const handleCreateCircle = async () => {
     await creationMutate();
-
-    console.log({ isCreationError, isCreationLoading });
   };
 
   return (

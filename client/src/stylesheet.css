@@ -4,6 +4,7 @@
   --accent-dark: #7c6951;
   --accent-light: #ebe1d5;
   --body-bg: #FAF0EB;
+  --padding-left-huge: 5vmax;
 }
 
 * {
@@ -17,6 +18,10 @@ body {
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
 }
 
 #root {
@@ -42,5 +47,5 @@ button:hover:not(.btn-close) {
 }
 
 .padding-left-huge {
-  padding-left: 5vmax;
+  padding-left: var(--padding-left-huge);
 }

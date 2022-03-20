@@ -11,6 +11,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import NotFound from './pages/NotFound';
+import CirclePage from './pages/Circle';
+import GrindPage from './pages/Grind';
 
 const App = () => {
   return (
@@ -28,6 +30,24 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <Home />
+                </ProtectedRoute>
+              }
+              exact
+            />
+            <Route
+              path="/circles/:circleId"
+              element={
+                <ProtectedRoute>
+                  <CirclePage />
+                </ProtectedRoute>
+              }
+              exact
+            />
+            <Route
+              path="/circles/:circleId/grinds/:grindId"
+              element={
+                <ProtectedRoute>
+                  <GrindPage />
                 </ProtectedRoute>
               }
               exact
