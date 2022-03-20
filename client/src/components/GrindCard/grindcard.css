@@ -1,0 +1,16 @@
+.big-grind-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  height: fit-content;
+  width: 40vmin;
+  border-radius: 7.5vmin;
+  padding-bottom: 1em;
+}
+
+.big-grind-card > img {
+  border-top-left-radius: 7.5vmin;
+  border-top-right-radius: 7.5vmin;
+}
+
+.big-grind-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}

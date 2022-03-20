@@ -36,6 +36,8 @@ const CirclePage = () => {
       },
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
+      retry: 3,
+      retryDelay: 5000,
     }
   );
 
@@ -54,6 +56,8 @@ const CirclePage = () => {
       },
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
+      retry: 3,
+      retryDelay: 5000,
     }
   );
 

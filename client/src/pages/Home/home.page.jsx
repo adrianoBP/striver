@@ -38,6 +38,8 @@ const HomePage = () => {
       },
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
+      retry: 3,
+      retryDelay: 5000,
     }
   );
 
