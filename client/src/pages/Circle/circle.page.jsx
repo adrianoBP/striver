@@ -58,6 +58,7 @@ const CirclePage = () => {
       refetchOnReconnect: false,
       retry: 3,
       retryDelay: 5000,
+      enabled: !!currentCircle,
     }
   );
 
