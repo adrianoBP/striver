@@ -61,7 +61,7 @@ const deleteGrind = async (grindId) => {
 
 const getMilestone = async (grindId, milestoneId) => {
   const grind = await getGrindById(grindId);
-  return grind.milestones.find((milestone) => milestone._id === milestoneId);
+  return grind.milestones.find((milestone) => milestone._id.toString() === milestoneId);
 };
 
 const addMilestone = async (grindId, name, description, dueDate) => {
