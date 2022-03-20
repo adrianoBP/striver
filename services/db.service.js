@@ -30,6 +30,12 @@ const getRecordsByProperty = async (db, collectionName, property, value) => {
   return (await collection.find({ [property]: value })).toArray();
 };
 
+const getRecordsByValueInProperty = async (db, collectionName, property, value) => {
+  // TODO: TEST
+  const collection = db.collection(collectionName);
+  return (await collection.find({ [property]: value })).toArray();
+};
+
 const updateRecord = (db, collectionName, recordId, record) => {
   record._id = ObjectId(record._id);
   const collection = db.collection(collectionName);
@@ -53,6 +59,7 @@ export {
   insertRecord,
   getRecord,
   getRecordsByProperty,
+  getRecordsByValueInProperty,
   updateRecord,
   updateRecordByProperty,
   deleteRecord,

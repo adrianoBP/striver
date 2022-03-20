@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as circleService from '../services/circle.service.js';
+import * as grindService from '../services/grind.service.js';
 import * as striverService from '../services/striver.service.js';
 
 const router = new Router();
@@ -46,8 +47,25 @@ const addStriverToCircle = async (req, res) => {
 };
 
 const removeStriver = async (req, res) => {
-  const { circleId, striverId } = req.params;
+  const striverId = req.headers['striver-id'];
+  const { circleId } = req.params;
   await circleService.removeStriver(circleId, striverId);
+  res.status(200).send();
+};
+
+const getGrindsByCircleId = async (req, res) => {
+  const { circleId } = req.params;
+  const grinds = await grindService.getGrindsByCircleId(circleId);
+
+  // TODO: calculations
+
+  res.json(grinds).send();
+};
+
+const addCircleToGrind = async (req, res) => {
+  const { circleId } = req.params;
+  const { grindId } = req.body;
+  await grindService.addCircleToGrind(grindId, circleId);
   res.status(200).send();
 };
 
@@ -58,4 +76,6 @@ router.delete('/:circleId', deleteCircle);
 router.post('/:circleId/strivers/add', addStriverToCircle);
 router.delete('/:circleId/strivers/:striverId', removeStriver);
 
+router.get('/:circleId/grinds', getGrindsByCircleId);
+router.post('/:circleId/grinds/add', addCircleToGrind);
 export default router;

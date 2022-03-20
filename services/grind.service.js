@@ -179,6 +179,27 @@ const deleteActivity = async (grindId, milestoneId, activityId) => {
   await dbService.updateRecord(db, COLLECTION_NAME, grindId, grind);
 };
 
+const getGrindsByCircleId = async (circleId) => {
+  await client.connect();
+  const db = client.db(DB_NAME);
+
+  const grinds = await dbService.getRecordsByValueInProperty(db, COLLECTION_NAME, 'circlesId', circleId);
+
+  return grinds;
+};
+
+const addCircleToGrind = async (grindId, circleId) => {
+  await client.connect();
+  const db = client.db(DB_NAME);
+
+  const grind = await getGrindById(grindId);
+
+  if (!grind.circlesId.includes(circleId)) {
+    grind.circlesId.push(circleId);
+  }
+
+  await dbService.updateRecord(db, COLLECTION_NAME, grindId, grind);
+};
 
 export {
   getAllGrinds,
@@ -196,4 +217,7 @@ export {
   addActivity,
   editActivity,
   deleteActivity,
+
+  addCircleToGrind,
+  getGrindsByCircleId,
 };

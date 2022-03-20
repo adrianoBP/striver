@@ -6,7 +6,7 @@ const router = new Router();
 // GRIND
 
 const getAllUserGrinds = async (req, res) => {
-  const { striverId } = req.body;
+  const striverId = req.headers['striver-id'];
   const grinds = await grindService.getAllGrinds(striverId);
   res.send(grinds);
 };
@@ -27,7 +27,8 @@ const getGrind = async (req, res) => {
 };
 
 const addGrind = async (req, res) => {
-  const { striverId, name, description } = req.body;
+  const striverId = req.headers['striver-id'];
+  const { name, description } = req.body;
   const insertedGrindId = await grindService.addGrind(striverId, name, description);
   res.json(insertedGrindId).send();
 };
@@ -102,7 +103,7 @@ const deleteActivity = (req, res) => {
 };
 
 // GRIND
-router.post('/', getAllUserGrinds);
+router.get('/', getAllUserGrinds);
 router.get('/:grindId', getGrind);
 router.post('/add', addGrind);
 router.put('/edit', editGrind);
