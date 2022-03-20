@@ -18,7 +18,7 @@ const SignIn = () => {
   const { mutate } = useMutation(
     async (user) => {
       return axios.post('/api/strivers/get-create', {
-        striveId: user.uid,
+        striverId: user.uid,
         striverName: user.displayName,
       });
     },
