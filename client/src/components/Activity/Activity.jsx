@@ -9,7 +9,7 @@ const Activity = ({ activity, grindId, milestoneId }) => {
   const { mutate } = useMutation(
     async (completed) => {
       return axios.put(
-        `/grinds/${grindId}/milestones/${milestoneId}/activities/edit`,
+        `/api/grinds/${grindId}/milestones/${milestoneId}/activities/edit`,
         {
           _id: activity._id,
           completed,
