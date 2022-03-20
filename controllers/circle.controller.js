@@ -7,7 +7,14 @@ const router = new Router();
 
 const getCircle = async (req, res) => {
   const { circleId } = req.params;
-  res.json(await circleService.getCircleById(circleId)).send();
+  const circle = await circleService.getCircleById(circleId);
+  circle.striversName = [];
+  for (const striverId of circle.striversId) {
+    const striver = await striverService.getStriverById(striverId);
+    circle.striversName.push(striver.displayName);
+  }
+
+  res.json(circle).send();
 };
 
 const addCircle = async (req, res) => {

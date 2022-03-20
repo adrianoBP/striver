@@ -17,7 +17,14 @@ const getGrindById = async (grindId) => {
   await client.connect();
   const db = client.db(DB_NAME);
   const grind = await dbService.getRecord(db, COLLECTION_NAME, grindId);
-  return grind;
+
+  const milestonesCount = grind.milestones.length;
+  const activitiesCount = grind.milestones.reduce((acc, milestone) => acc + milestone.activities.length, 0);
+  const completedActivitiesCount = grind.milestones.reduce((acc, milestone) => acc + milestone.activities.filter(activity => activity.completed).length, 0);
+
+  const percentage = Math.round((completedActivitiesCount / activitiesCount) * 100);
+
+  return { ...grind, milestonesCount, completion: percentage || 0 };
 };
 
 const addGrind = async (striverId, name, description, dueDate) => {
@@ -184,6 +191,19 @@ const getGrindsByCircleId = async (circleId) => {
   const db = client.db(DB_NAME);
 
   const grinds = await dbService.getRecordsByValueInProperty(db, COLLECTION_NAME, 'circlesId', circleId);
+
+  for (const grind of grinds) {
+    const milestonesCount = grind.milestones.length;
+    const activitiesCount = grind.milestones.reduce((acc, milestone) => acc + milestone.activities.length, 0);
+    const completedActivitiesCount = grind.milestones.reduce((acc, milestone) => acc + milestone.activities.filter(activity => activity.completed).length, 0);
+
+    const percentage = Math.round((completedActivitiesCount / activitiesCount) * 100);
+
+    grind.milestonesCount = milestonesCount;
+    grind.completion = percentage || 0;
+    // Remove milestones to keep HTTP requests as light as possible
+    grind.milestones = [];
+  }
 
   return grinds;
 };
