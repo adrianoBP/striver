@@ -19,7 +19,15 @@ const AuthProvider = ({ children }) => {
   const signup = (email, password) =>
     auth.createUserWithEmailAndPassword(email, password);
 
-  const login = () => signInWithGoogle();
+  const login = async (callback) => {
+    const result = await signInWithGoogle();
+
+    if (!callback) {
+      return null;
+    }
+
+    return callback(result.user);
+  };
 
   const logout = () => auth.signOut();
 

@@ -12,6 +12,8 @@
 
 body {
   height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 #root {
@@ -23,5 +25,6 @@ body {
 .appBody {
   background-color: var(--body-bg) !important;
   flex: 1 1 auto;
-  padding-top: 2em;
+  padding-left: 5vw;
+  padding-top: 5vh;
 }

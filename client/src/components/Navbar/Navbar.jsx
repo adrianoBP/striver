@@ -11,19 +11,13 @@ const NavBar = () => {
     <Navbar bg="dark" variant="dark" className="nav">
       <Container>
         <Navbar.Brand href="/">Striver</Navbar.Brand>
-        <Nav className="justify-content-end">
-          {currentUser ? (
+        {currentUser && (
+          <Nav className="justify-content-end">
             <Button variant="outline-danger" onClick={logout}>
               Log Out
             </Button>
-          ) : (
-            <Nav.Link href="/login">
-              <Button variant="outline-info" onClick={logout}>
-                Log In
-              </Button>
-            </Nav.Link>
-          )}
-        </Nav>
+          </Nav>
+        )}
       </Container>
     </Navbar>
   );

@@ -1,5 +1,22 @@
-.home-container {
+.circles-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.circles-container:first-child {
+  padding-bottom: 10vh;
+}
+
+.circles-container > h1 {
+  padding-bottom: 0.5em;
+}
+
+.circles-list {
+  display: flex;
+  flex-direction: row;
+  column-gap: 2.5vw;
+  overflow-x: auto;
+  white-space: nowrap;
 }
