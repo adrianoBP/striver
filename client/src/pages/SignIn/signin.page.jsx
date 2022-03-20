@@ -27,6 +27,7 @@ const SignIn = () => {
         navigate('/');
       },
       onError: () => {
+        // ! COMMENT THESE LINES FOR DEV
         logout();
 
         setShow(true);

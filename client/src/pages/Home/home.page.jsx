@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import AuthContext from '../../components/AuthContext';
 
 import Circle from '../../components/Circle';
+import CirclesDisplayer from '../../components/CirclesDisplayer';
 
 import withReactQuery from '../../components/common/withReactQuery';
 
@@ -75,28 +76,24 @@ const HomePage = () => {
   //   );
   // }
 
+  const handleJoinCircle = () => {};
+
+  const handleCreateCircle = () => {};
+
   return (
     <>
-      <div className="circles-container">
-        <h1> Circles you are part of </h1>
-        <div className="circles-list">
-          {circles.map(({ circleId, circleName, description }) => (
-            <div key={circleId}>
-              <Circle name={circleName} description={description} />
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="circles-container">
-        <h1> Your Circles </h1>
-        <div className="circles-list">
-          {myCircles.map(({ circleId, circleName, description }) => (
-            <div key={circleId}>
-              <Circle name={circleName} description={description} />
-            </div>
-          ))}
-        </div>
-      </div>
+      <CirclesDisplayer
+        circles={circles}
+        callback={handleJoinCircle}
+        title="Circles you are part of"
+      />
+
+      <CirclesDisplayer
+        owner
+        circles={myCircles}
+        callback={handleCreateCircle}
+        title="Your Circles"
+      />
     </>
   );
 };
