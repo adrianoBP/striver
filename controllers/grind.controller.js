@@ -15,8 +15,6 @@ const getGrind = async (req, res) => {
   const { grindId } = req.params;
   const grind = await grindService.getGrindById(grindId);
 
-  // Remove milestones to keep HTTP requests as light as possible
-  grind.milestones = [];
   res.json(grind).send();
 };
 

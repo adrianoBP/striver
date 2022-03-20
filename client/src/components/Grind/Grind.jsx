@@ -4,6 +4,7 @@ import { ProgressBar } from 'react-bootstrap';
 import './grind.css';
 
 const Grind = ({ grind }) => {
+  console.log(grind);
   return (
     <div className="grind-card shadow-slim">
       <div className="grind-name">{grind.name}</div>
@@ -17,7 +18,7 @@ const Grind = ({ grind }) => {
           <span>Frank</span>
         </div>
         <div className="progress-bar-container">
-          <ProgressBar now={60} />
+          <ProgressBar now={grind.completion} />
         </div>
       </div>
     </div>
