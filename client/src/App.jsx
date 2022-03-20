@@ -15,6 +15,10 @@ import NotFound from './pages/NotFound';
 const App = () => {
   return (
     <Router>
+      <link
+        href="https://fonts.googleapis.com/css?family=Quicksand"
+        rel="stylesheet"
+      />
       <AuthContext.AuthProvider>
         <NavBar />
         <main className="appBody">

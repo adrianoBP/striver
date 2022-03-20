@@ -3,17 +3,23 @@
   flex-direction: row;
   background-color: #fff;
   justify-content: space-between;
-  width: 20rem;
-  height: 6rem;
-  border-radius: 3rem;
+  width: 25rem;
+  height: 10rem;
+  border-radius: 5rem;
   padding: 1em 1.2em;
   font-weight: 600;
+  cursor: pointer;
 }
 
-.content > img {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 3rem;
+.content:hover {
+  background-color: var(--accent-light);
+}
+
+.content>img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 4rem;
+  border: 0.5rem solid var(--accent);
 }
 
 .description {
@@ -21,4 +27,9 @@
   flex-direction: column;
   text-align: right;
   align-self: center;
+  padding-right: 1rem;
+}
+
+.description>:first-child {
+  font-size: 1.7rem;
 }

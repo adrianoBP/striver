@@ -1,13 +1,16 @@
 :root {
-  --primary: #107CF1; 
-  --accent: #BDD3EF;
-  --body-bg: #f2dec6;
+  --primary: #107CF1;
+  --accent: #DEC9B0;
+  --accent-dark: #7c6951;
+  --accent-light: #ebe1d5;
+  --body-bg: #FAF0EB;
 }
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Quicksand';
+  transition-duration: .2s;
 }
 
 body {
@@ -25,6 +28,19 @@ body {
 .appBody {
   background-color: var(--body-bg) !important;
   flex: 1 1 auto;
-  padding-left: 5vw;
+  /* padding-left: 5vw; */
   padding-top: 5vh;
+}
+
+button:hover:not(.btn-close) {
+  background: var(--accent-dark) !important;
+  color: white;
+}
+
+.shadow-slim {
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.padding-left-huge {
+  padding-left: 5vmax;
 }

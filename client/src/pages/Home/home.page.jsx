@@ -19,26 +19,37 @@ const HomePage = () => {
     {
       circleId: 2,
       owner: 'googleId',
-      circleName: 'My Friends Amazing Circle',
+      circleName: 'UoP Strivers',
       description: '13 Strivers',
+      imageSrc: 'https://picsum.photos/200',
     },
     {
       circleId: 3,
       owner: 'googleId',
-      circleName: 'My Friends Amazing Circle',
+      circleName: 'UoP Strivers',
       description: '13 Strivers',
+      imageSrc: 'https://picsum.photos/200',
     },
     {
       circleId: 4,
       owner: 'googleId',
-      circleName: 'My Friends Amazing Circle',
+      circleName: 'UoP Strivers',
       description: '13 Strivers',
+      imageSrc: 'https://picsum.photos/200',
     },
     {
       circleId: 5,
       owner: 'googleId',
-      circleName: 'My Friends Amazing Circle',
+      circleName: 'UoP Strivers',
       description: '13 Strivers',
+      imageSrc: 'https://picsum.photos/200',
+    },
+    {
+      circleId: 6,
+      owner: 'googleId',
+      circleName: 'UoP Strivers',
+      description: '13 Strivers',
+      imageSrc: 'https://picsum.photos/200',
     },
   ]);
 
@@ -48,6 +59,7 @@ const HomePage = () => {
       owner: 'googleId',
       circleName: 'My Amazing Circle',
       description: '13 Strivers',
+      imageSrc: 'https://picsum.photos/200',
     },
   ]);
 

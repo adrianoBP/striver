@@ -13,7 +13,7 @@ const NavBar = () => {
         <Navbar.Brand href="/">Striver</Navbar.Brand>
         {currentUser && (
           <Nav className="justify-content-end">
-            <Button variant="outline-danger" onClick={logout}>
+            <Button className="shadow-slim" onClick={logout}>
               Log Out
             </Button>
           </Nav>

@@ -9,14 +9,43 @@
   padding-bottom: 10vh;
 }
 
-.circles-container > h1 {
+.circles-list>* {
+  padding: 1rem;
+}
+
+.circles-list>button {
+  min-height: 7.5rem;
+  min-width: 7.5rem;
+  background: var(--accent);
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 4rem;
+  border: none;
+}
+
+.circles-container>h1 {
   padding-bottom: 0.5em;
+  text-decoration: underline;
+  font-size: 2rem;
 }
 
 .circles-list {
   display: flex;
   flex-direction: row;
-  column-gap: 2.5vw;
   overflow-x: auto;
-  white-space: nowrap;
+  padding-left: 1rem;
+  align-items: center;
+  width: 100%;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+}
+
+.circles-list::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
 }
