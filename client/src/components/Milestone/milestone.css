@@ -1,0 +1,40 @@
+.milestone-card {
+  display: grid; 
+  grid-template-columns: 1fr 3fr; 
+  grid-template-rows: 1fr; 
+  gap: 0px 0px;
+  grid-template-areas: 
+    "milestone-name milestone-progress"
+    "activities activities"; 
+
+  background-color: #fff;
+  width: auto;
+  height: fit-content;
+  min-height: 8rem;
+  border-radius: 4rem;
+  padding: 1.5em 1.5em;
+  margin: 1em;
+  color: black;
+}
+
+.milestone-name {
+  padding-right: 2em;
+  font-weight: 900;
+  margin: auto;
+  grid-area: milestone-name;
+}
+
+.milestone-progress { 
+  grid-area: milestone-progress;
+}
+
+.activities { 
+  grid-area: activities;
+  padding-top: 1em;
+}
+
+.activity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

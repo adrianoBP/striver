@@ -1,0 +1,15 @@
+.milestone-list {
+  padding-right: 3vw;
+  height: 80vmin;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  
+  /* Firefox */
+  -ms-overflow-style: none;
+}
+
+.milestone-list::-webkit-scrollbar {
+  display: none;
+}

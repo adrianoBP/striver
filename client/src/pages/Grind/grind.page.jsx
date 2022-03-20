@@ -8,6 +8,7 @@ import withReactQuery from '../../components/common/withReactQuery';
 
 import './grind.page.css';
 import GrindCard from '../../components/GrindCard';
+import MilestonesDisplayer from '../../components/MilestonesDisplayer';
 
 const GrindPage = () => {
   const { pathname } = useLocation();
@@ -50,7 +51,7 @@ const GrindPage = () => {
   return (
     <div className="grind-page-container">
       <GrindCard grind={currentGrind} />
-      {/* <ActivitiesDisplayer /> */}
+      <MilestonesDisplayer milestones={milestones} grindId={grindId} />
     </div>
   );
 };
