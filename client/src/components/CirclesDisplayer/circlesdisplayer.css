@@ -3,9 +3,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-}
-
-.circles-container:first-child {
   padding-bottom: 10vh;
 }
 
@@ -14,8 +11,8 @@
 }
 
 .circles-list>button {
-  min-height: 7.5rem;
-  min-width: 7.5rem;
+  min-height: 6rem;
+  min-width: 6rem;
   background: var(--accent);
   font-size: 2rem;
   font-weight: bold;

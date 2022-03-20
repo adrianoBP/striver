@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
-// import { useQuery } from 'react-query';
-// import { Spinner } from 'react-bootstrap';
+import axios from 'axios';
+import { useMutation, useQuery } from 'react-query';
+import { Spinner } from 'react-bootstrap';
 import AuthContext from '../../components/AuthContext';
 
-import Circle from '../../components/Circle';
 import CirclesDisplayer from '../../components/CirclesDisplayer';
 
 import withReactQuery from '../../components/common/withReactQuery';
@@ -15,82 +14,85 @@ const HomePage = () => {
   const { currentUser } = AuthContext.useAuth();
 
   // Subject to change
-  const [circles, setCircles] = useState([
-    {
-      circleId: 2,
-      owner: 'googleId',
-      circleName: 'UoP Strivers',
-      description: '13 Strivers',
-      imageSrc: 'https://picsum.photos/200',
-    },
-    {
-      circleId: 3,
-      owner: 'googleId',
-      circleName: 'UoP Strivers',
-      description: '13 Strivers',
-      imageSrc: 'https://picsum.photos/200',
-    },
-    {
-      circleId: 4,
-      owner: 'googleId',
-      circleName: 'UoP Strivers',
-      description: '13 Strivers',
-      imageSrc: 'https://picsum.photos/200',
-    },
-    {
-      circleId: 5,
-      owner: 'googleId',
-      circleName: 'UoP Strivers',
-      description: '13 Strivers',
-      imageSrc: 'https://picsum.photos/200',
-    },
-    {
-      circleId: 6,
-      owner: 'googleId',
-      circleName: 'UoP Strivers',
-      description: '13 Strivers',
-      imageSrc: 'https://picsum.photos/200',
-    },
-  ]);
+  const [circles, setCircles] = useState([]);
 
-  const [myCircles, setMyCircles] = useState([
-    {
-      circleId: 1,
-      owner: 'googleId',
-      circleName: 'My Amazing Circle',
-      description: '13 Strivers',
-      imageSrc: 'https://picsum.photos/200',
+  const [myCircles, setMyCircles] = useState([]);
+
+  // Circles list are retrieved from the Striver endpoint
+  const { isError, isLoading } = useQuery(
+    ['circles'],
+    async () => {
+      return axios.post('/api/strivers/get-create', {
+        striverId: currentUser.uid,
+        striverName: currentUser.displayName,
+      });
     },
-  ]);
+    {
+      onSuccess: ({ data }) => {
+        // Owner field is a string containing the ID of the owner. If it matches
+        // current user ID, then that circle was created by current user.
+        const ownerCircles = data.circles.filter(({ owner }) => owner);
 
-  // const { isError, isLoading } = useQuery(
-  //   ['circles'],
-  //   async () => axios.get('/circles'),
-  //   {
-  //     onSuccess: ({ data }) => {
-  //       const ownerCircles = data.filter(({ owner }) => owner);
+        setMyCircles(ownerCircles);
+        setCircles(data.circles);
+      },
+    }
+  );
 
-  //       setMyCircles(ownerCircles);
-  //       setCircles(data);
-  //     },
-  //   }
-  // );
+  const {
+    mutate: creationMutate,
+    isError: isCreationError,
+    isLoading: isCreationLoading,
+  } = useMutation(
+    ['create-circle'],
+    async () => {
+      return axios.post(
+        '/api/circles/add',
+        {
+          name: 'New Circle',
+          description: '13 Strivers',
+        },
+        {
+          headers: {
+            'striver-id': currentUser.uid,
+          },
+        }
+      );
+    },
+    {
+      onSuccess: ({ data }) => {
+        const newCircle = {
+          _id: data.insertedCircleId,
+          name: 'New Circle',
+          description: '13 Strivers',
+          owner: true,
+          imageSrc: 'https://picsum.photos/200',
+        };
 
-  // if (isError) {
-  //   return <div className="home-container"> An Error occurred. </div>;
-  // }
+        setMyCircles([...myCircles, newCircle]);
+      },
+    }
+  );
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="home-container">
-  //       <Spinner animation="border" />
-  //     </div>
-  //   );
-  // }
+  if (isError) {
+    return <div className="home-container"> An Error occurred. </div>;
+  }
+
+  if (isLoading) {
+    return (
+      <div className="home-container">
+        <Spinner animation="border" />
+      </div>
+    );
+  }
 
   const handleJoinCircle = () => {};
 
-  const handleCreateCircle = () => {};
+  const handleCreateCircle = async () => {
+    await creationMutate();
+
+    console.log({ isCreationError, isCreationLoading });
+  };
 
   return (
     <>
@@ -101,7 +103,6 @@ const HomePage = () => {
       />
 
       <CirclesDisplayer
-        owner
         circles={myCircles}
         callback={handleCreateCircle}
         title="Your Circles"

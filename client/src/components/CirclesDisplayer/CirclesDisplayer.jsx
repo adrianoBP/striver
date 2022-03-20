@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Circle from '../Circle/Circle';
 
 import './circlesdisplayer.css';
 
-const CirclesDisplayer = ({ owner = false, circles, title, callback }) => {
+const CirclesDisplayer = ({ circles, title, callback }) => {
   return (
     <div className="circles-container">
       <h1 className="padding-left-huge"> {title} </h1>
@@ -12,14 +13,10 @@ const CirclesDisplayer = ({ owner = false, circles, title, callback }) => {
           New
         </button>
 
-        {circles.map(({ circleId, circleName, description, imageSrc }) => (
-          <div key={circleId}>
-            <Circle
-              name={circleName}
-              description={description}
-              imageSrc={imageSrc}
-            />
-          </div>
+        {circles?.map(({ _id, name, description, imageSrc }) => (
+          <Link to={`circles/${_id}`} key={_id}>
+            <Circle name={name} description={description} imageSrc={imageSrc} />
+          </Link>
         ))}
       </div>
     </div>

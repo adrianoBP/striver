@@ -3,9 +3,9 @@
   flex-direction: row;
   background-color: #fff;
   justify-content: space-between;
-  width: 25rem;
-  height: 10rem;
-  border-radius: 5rem;
+  width: 20rem;
+  height: 8rem;
+  border-radius: 4rem;
   padding: 1em 1.2em;
   font-weight: 600;
   cursor: pointer;
@@ -16,8 +16,9 @@
 }
 
 .content>img {
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  min-width: 6rem;
+  height: 6rem;
   border-radius: 4rem;
   border: 0.5rem solid var(--accent);
 }
