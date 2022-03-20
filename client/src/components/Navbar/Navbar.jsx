@@ -14,7 +14,7 @@ const NavBar = () => {
         {currentUser && (
           <Nav className="justify-content-end">
             <Button className="shadow-slim" onClick={logout}>
-              Log Out
+              Logout
             </Button>
           </Nav>
         )}

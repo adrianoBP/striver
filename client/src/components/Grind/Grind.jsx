@@ -16,7 +16,7 @@ const Grind = ({ grind, circleId }) => {
 
       <div className="grind-details">
         <div className="count-and-owner">
-          <span>{grind.milestonesCount}</span>
+          <span>{grind.milestonesCount} milestones</span>
           {/* <span>{grind.striverId}</span> */}
           <span>{grind.displayName}</span>
         </div>
