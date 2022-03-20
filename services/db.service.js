@@ -27,7 +27,7 @@ const getRecord = async (db, collectionName, recordId) => {
 
 const getRecordsByProperty = async (db, collectionName, property, value) => {
   const collection = db.collection(collectionName);
-  return await collection.findOne({ [property]: value });
+  return (await collection.find({ [property]: value })).toArray();
 };
 
 const updateRecord = (db, collectionName, recordId, record) => {

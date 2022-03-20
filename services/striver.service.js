@@ -8,7 +8,7 @@ const getStriverById = async (striverId) => {
   await client.connect();
   const db = client.db(DB_NAME);
   console.log(striverId);
-  return await dbService.getRecordsByProperty(db, COLLECTION_NAME, '_id', striverId);
+  return (await dbService.getRecordsByProperty(db, COLLECTION_NAME, '_id', striverId))?.[0];
 };
 
 const getOrCreate = async (striverId, striverName) => {
